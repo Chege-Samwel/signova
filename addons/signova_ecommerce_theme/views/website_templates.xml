@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Body class - HIGH PRIORITY, unconditional -->
+        <template id="body_signova_class" inherit_id="website.layout" name="Signova Body Class" priority="999">
+            <xpath expr="//body" position="attributes">
+                <attribute name="t-attf-class" add="o_signova_theme" separator=" "/>
+            </xpath>
+        </template>
+
+        <!-- Shop grid - HIGH PRIORITY, adds both theme and grid to wrap -->
+        <template id="shop_signova_grid_tweak" inherit_id="website_sale.products" name="Signova Shop Grid" priority="999">
+            <xpath expr="//div[@id='wrap']" position="attributes">
+                <attribute name="t-attf-class" add="o_signova_grid o_signova_theme" separator=" "/>
+            </xpath>
+        </template>
+
+        <!-- Homepage hero - ONLY homepage -->
+        <template id="homepage_signova_banner" inherit_id="website.homepage" name="Signova Homepage Hero" priority="999">
+            <xpath expr="//div[hasclass('oe_structure')][1]" position="before">
+                <t t-if="request and request.httprequest and request.httprequest.path == '/'">
+                    <section class="s_signova_hero">
+                        <div class="s_signova_hero_slider">
+                            <div class="s_signova_hero_track">
+                                <a href="/shop" class="s_signova_hero_slide"><img src="/signova_ecommerce_theme/static/src/img/hero/h1.jpg" width="1900" height="550" loading="eager"/></a>
+                                <a href="/shop" class="s_signova_hero_slide"><img src="/signova_ecommerce_theme/static/src/img/hero/h2.jpg" width="1900" height="550" loading="lazy"/></a>
+                                <a href="/shop" class="s_signova_hero_slide"><img src="/signova_ecommerce_theme/static/src/img/hero/h3.jpg" width="1900" height="550" loading="lazy"/></a>
+                                <a href="/shop" class="s_signova_hero_slide"><img src="/signova_ecommerce_theme/static/src/img/hero/h4.jpg" width="1900" height="550" loading="lazy"/></a>
+                                <a href="/shop" class="s_signova_hero_slide"><img src="/signova_ecommerce_theme/static/src/img/hero/h5.jpg" width="1900" height="550" loading="lazy"/></a>
+                                <a href="/shop" class="s_signova_hero_slide"><img src="/signova_ecommerce_theme/static/src/img/hero/h6.jpg" width="1900" height="550" loading="lazy"/></a>
+                                <a href="/shop" class="s_signova_hero_slide"><img src="/signova_ecommerce_theme/static/src/img/hero/h7.jpg" width="1900" height="550" loading="lazy"/></a>
+                                <a href="/shop" class="s_signova_hero_slide"><img src="/signova_ecommerce_theme/static/src/img/hero/h8.jpg" width="1900" height="550" loading="lazy"/></a>
+                            </div>
+                            <button class="s_signova_hero_arrow prev">‹</button>
+                            <button class="s_signova_hero_arrow next">›</button>
+                            <div class="s_signova_hero_dots"><button class="s_signova_hero_dot on"></button><button class="s_signova_hero_dot"></button><button class="s_signova_hero_dot"></button><button class="s_signova_hero_dot"></button><button class="s_signova_hero_dot"></button><button class="s_signova_hero_dot"></button><button class="s_signova_hero_dot"></button><button class="s_signova_hero_dot"></button></div>
+                        </div>
+                    </section>
+                </t>
+            </xpath>
+        </template>
+
+        <template id="header_signova_signin" inherit_id="website.layout" name="Signova Header Sign In" priority="999">
+            <xpath expr="//header" position="inside">
+                <t t-if="not request.env.user._is_public()">
+                    <a href="/my/home" class="o_signova_acct">👤 <t t-esc="request.env.user.name"/></a>
+                </t>
+                <t t-else="">
+                    <a href="/web/login" class="o_signova_signin">Sign in</a>
+                </t>
+            </xpath>
+        </template>
+
+        <template id="product_signova_gallery" inherit_id="website_sale.product" name="Signova Gallery" priority="999">
+            <xpath expr="//div[@id='wrap']" position="inside">
+                <div class="o_signova_lightbox" id="oSignovaLightbox">
+                    <button class="o_signova_lightbox_x">✕</button>
+                    <img alt="Zoomed"/>
+                </div>
+            </xpath>
+        </template>
+
+        <template id="product_signova_sticky_cta" inherit_id="website_sale.product" name="Signova Sticky" priority="999">
+            <xpath expr="//div[@id='wrap']" position="inside">
+                <div class="o_signova_sticky_bar d-lg-none">
+                    <div class="container d-flex justify-content-between">
+                        <strong t-field="product.name"/>
+                        <a href="#add_to_cart" class="btn btn-primary">Add to Cart</a>
+                    </div>
+                </div>
+            </xpath>
+        </template>
+
+        <template id="seo_signova_head" inherit_id="website.layout" name="Signova SEO Head" priority="999">
+            <xpath expr="//head" position="inside">
+                <meta name="theme-color" content="#0b1f3a"/>
+            </xpath>
+        </template>
+    </data>
+</odoo>

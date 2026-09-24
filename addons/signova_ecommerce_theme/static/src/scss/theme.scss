@@ -1,0 +1,1186 @@
+// =====================================================================
+// Signova Theme
+// ---------------------------------------------------------------------
+// EVERY rule in this file is nested inside .o_signova_theme.
+// That class is added to <body> only on the Signova website
+// (see views/website_templates.xml -> body_signova_class).
+//
+// DO NOT add a bare top-level selector. That is the single most likely
+// way this module leaks styling onto the Euromedia storefront.
+// =====================================================================
+
+.o_signova_theme {
+
+    // -----------------------------------------------------------------
+    // Design tokens
+    // -----------------------------------------------------------------
+    --signova-navy:        #0b1f3a;
+    --signova-navy-700:    #142b52;
+    --signova-navy-500:    #22406f;
+    --signova-gold:        #c9a227;
+    --signova-gold-light:  #e3c25c;
+    --signova-ink:         #14181f;
+    --signova-body:        #4a5566;
+    --signova-grey:        #f4f5f7;
+    --signova-grey-200:    #e6e9ef;
+    --signova-white:       #ffffff;
+
+    --signova-radius:      10px;
+    --signova-radius-lg:   16px;
+    --signova-shadow:      0 2px 10px rgba(11, 31, 58, .06);
+    --signova-shadow-lg:   0 14px 38px rgba(11, 31, 58, .14);
+    --signova-transition:  all .22s cubic-bezier(.4, 0, .2, 1);
+
+    color: var(--signova-body);
+
+    // -----------------------------------------------------------------
+    // Typography
+    // -----------------------------------------------------------------
+    h1, h2, h3, h4, h5, h6,
+    .h1, .h2, .h3, .h4, .h5, .h6 {
+        color: var(--signova-ink);
+        font-weight: 700;
+        letter-spacing: -.015em;
+    }
+
+    h1, .h1 { line-height: 1.12; }
+    h2, .h2 { line-height: 1.2; }
+
+    p { line-height: 1.65; }
+
+    a {
+        transition: var(--signova-transition);
+    }
+
+    .text-muted { color: var(--signova-body) !important; }
+
+    // Small gold eyebrow label above section headings
+    .o_signova_eyebrow {
+        display: inline-block;
+        font-size: .78rem;
+        font-weight: 700;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        color: var(--signova-gold);
+        margin-bottom: .6rem;
+    }
+
+    // -----------------------------------------------------------------
+    // Buttons
+    // -----------------------------------------------------------------
+    .btn {
+        border-radius: var(--signova-radius);
+        font-weight: 600;
+        letter-spacing: .01em;
+        padding: .62rem 1.4rem;
+        transition: var(--signova-transition);
+    }
+
+    .btn-lg {
+        padding: .85rem 1.9rem;
+        font-size: 1.02rem;
+    }
+
+    .btn-primary {
+        background-color: var(--signova-gold);
+        border-color: var(--signova-gold);
+        color: var(--signova-navy);
+
+        &:hover, &:focus, &:active {
+            background-color: var(--signova-gold-light) !important;
+            border-color: var(--signova-gold-light) !important;
+            color: var(--signova-navy) !important;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(201, 162, 39, .32);
+        }
+    }
+
+    .btn-secondary {
+        background-color: var(--signova-navy);
+        border-color: var(--signova-navy);
+        color: #fff;
+
+        &:hover, &:focus {
+            background-color: var(--signova-navy-700) !important;
+            border-color: var(--signova-navy-700) !important;
+        }
+    }
+
+    .btn-outline-secondary {
+        border-color: rgba(255, 255, 255, .5);
+        color: #fff;
+
+        &:hover, &:focus {
+            background-color: #fff !important;
+            border-color: #fff !important;
+            color: var(--signova-navy) !important;
+        }
+    }
+
+    // -----------------------------------------------------------------
+    // Header / navbar
+    // -----------------------------------------------------------------
+    #top, header {
+        .navbar,
+        .o_header_standard,
+        .o_main_nav {
+            background-color: var(--signova-navy) !important;
+            border-bottom: 3px solid var(--signova-gold);
+        }
+    }
+
+    .navbar {
+        background-color: var(--signova-navy) !important;
+        padding-top: .65rem;
+        padding-bottom: .65rem;
+
+        .navbar-brand,
+        .nav-link,
+        .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, .88) !important;
+            font-weight: 500;
+
+            &:hover, &:focus {
+                color: var(--signova-gold) !important;
+            }
+        }
+
+        .nav-item.active > .nav-link,
+        .nav-link.active {
+            color: var(--signova-gold) !important;
+            font-weight: 600;
+        }
+
+        .navbar-toggler {
+            border-color: rgba(255, 255, 255, .35);
+        }
+    }
+
+    // Cart counter badge
+    .o_wsale_my_cart .badge,
+    #my_cart .badge {
+        background-color: var(--signova-gold) !important;
+        color: var(--signova-navy) !important;
+        font-weight: 700;
+    }
+
+    // -----------------------------------------------------------------
+    // Hero banner (homepage)
+    // -----------------------------------------------------------------
+    .s_signova_hero {
+        position: relative;
+        background:
+            radial-gradient(ellipse at 78% 12%, rgba(201, 162, 39, .20), transparent 58%),
+            linear-gradient(135deg, var(--signova-navy) 0%, var(--signova-navy-700) 62%, var(--signova-navy-500) 100%);
+        color: #fff;
+        padding: 5.5rem 0;
+        overflow: hidden;
+
+        h1, .display-5, .display-4 {
+            color: #fff;
+            max-width: 20ch;
+            margin-inline: auto;
+        }
+
+        .lead {
+            color: #cdd6e4;
+            max-width: 56ch;
+            margin-inline: auto;
+            font-size: 1.12rem;
+        }
+
+        .o_signova_eyebrow { color: var(--signova-gold-light); }
+
+        @media (max-width: 767.98px) {
+            padding: 3.5rem 0;
+
+            h1, .display-5 { font-size: 1.9rem; }
+            .btn { width: 100%; margin: .35rem 0 !important; }
+        }
+    }
+
+    // Trust / USP strip under the hero
+    .s_signova_usps {
+        background: var(--signova-white);
+        border-bottom: 1px solid var(--signova-grey-200);
+        padding: 1.75rem 0;
+
+        .o_signova_usp {
+            display: flex;
+            align-items: center;
+            gap: .8rem;
+            justify-content: center;
+            font-weight: 600;
+            color: var(--signova-ink);
+            font-size: .95rem;
+        }
+
+        .o_signova_usp_icon {
+            width: 40px;
+            height: 40px;
+            flex: 0 0 40px;
+            border-radius: 50%;
+            background: rgba(201, 162, 39, .14);
+            color: var(--signova-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.05rem;
+        }
+
+        @media (max-width: 767.98px) {
+            .o_signova_usp {
+                justify-content: flex-start;
+                margin-bottom: .9rem;
+            }
+        }
+    }
+
+    // Category tiles
+    .s_signova_categories {
+        padding: 4rem 0;
+        background: var(--signova-grey);
+
+        .o_signova_cat_card {
+            display: block;
+            background: #fff;
+            border: 1px solid var(--signova-grey-200);
+            border-radius: var(--signova-radius-lg);
+            padding: 1.9rem 1.35rem;
+            text-align: center;
+            height: 100%;
+            text-decoration: none;
+            box-shadow: var(--signova-shadow);
+            transition: var(--signova-transition);
+
+            &:hover {
+                transform: translateY(-5px);
+                border-color: var(--signova-gold);
+                box-shadow: var(--signova-shadow-lg);
+            }
+
+            .o_signova_cat_title {
+                color: var(--signova-ink);
+                font-weight: 700;
+                margin: .85rem 0 .3rem;
+                font-size: 1.02rem;
+            }
+
+            .o_signova_cat_sub {
+                color: var(--signova-body);
+                font-size: .87rem;
+                margin: 0;
+            }
+
+            .o_signova_cat_icon {
+                width: 56px;
+                height: 56px;
+                margin: 0 auto;
+                border-radius: 14px;
+                background: linear-gradient(135deg, var(--signova-navy), var(--signova-navy-500));
+                color: var(--signova-gold);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.5rem;
+            }
+        }
+    }
+
+    // Call-to-action band
+    .s_signova_cta {
+        background: linear-gradient(135deg, var(--signova-navy), var(--signova-navy-700));
+        color: #fff;
+        padding: 3.5rem 0;
+        text-align: center;
+
+        h2 { color: #fff; }
+        p  { color: #cdd6e4; max-width: 58ch; margin-inline: auto; }
+    }
+
+    // -----------------------------------------------------------------
+    // Shop / product grid
+    // -----------------------------------------------------------------
+    #wrap.o_wsale_products_page,
+    .o_wsale_products_main_row {
+        background: var(--signova-white);
+    }
+
+    // 4 across on desktop (default Odoo is 3)
+    .o_signova_grid {
+        .oe_product_cart,
+        .oe_product {
+            @media (min-width: 992px) { width: 25%; }
+        }
+    }
+
+    .oe_product,
+    .oe_product_cart {
+        .card,
+        &.card {
+            border: 1px solid var(--signova-grey-200);
+            border-radius: var(--signova-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--signova-shadow);
+            transition: var(--signova-transition);
+            height: 100%;
+
+            &:hover {
+                transform: translateY(-5px);
+                border-color: var(--signova-gold);
+                box-shadow: var(--signova-shadow-lg);
+            }
+        }
+
+        .oe_product_image,
+        .o_wsale_product_grid_wrapper {
+            background: var(--signova-grey);
+
+            img { transition: transform .35s ease; }
+        }
+
+        &:hover .oe_product_image img { transform: scale(1.045); }
+
+        .o_wsale_products_item_title,
+        .product_name {
+            color: var(--signova-ink) !important;
+            font-weight: 650;
+            font-size: .98rem;
+            line-height: 1.35;
+
+            &:hover { color: var(--signova-navy-500) !important; }
+        }
+    }
+
+    .o_wsale_product_information {
+        padding: 1rem 1.05rem 1.15rem;
+
+        .product_price,
+        .product_price .oe_price,
+        .oe_currency_value {
+            color: var(--signova-navy);
+            font-weight: 700;
+            font-size: 1.06rem;
+        }
+
+        .text-danger .oe_price { color: #c0392b; }
+
+        del, .text-decoration-line-through {
+            color: #98a2b3;
+            font-weight: 500;
+            font-size: .9rem;
+        }
+    }
+
+    // Product ribbons
+    .o_ribbon, .o_ribbon_left, .o_ribbon_right {
+        background-color: var(--signova-gold) !important;
+        color: var(--signova-navy) !important;
+        font-weight: 700;
+        letter-spacing: .02em;
+    }
+
+    // Shop sidebar filters
+    #products_grid_before,
+    .o_wsale_products_sidebar {
+        .card, .list-group {
+            border-radius: var(--signova-radius);
+            border-color: var(--signova-grey-200);
+        }
+
+        .list-group-item.active,
+        a.active {
+            color: var(--signova-navy) !important;
+            font-weight: 700;
+            border-left: 3px solid var(--signova-gold);
+            background: rgba(201, 162, 39, .09);
+        }
+    }
+
+    // Search bar in shop
+    .o_wsale_products_searchbar_form .search-query,
+    .o_searchbar_form input {
+        border-radius: var(--signova-radius);
+        border-color: var(--signova-grey-200);
+
+        &:focus {
+            border-color: var(--signova-gold);
+            box-shadow: 0 0 0 .18rem rgba(201, 162, 39, .18);
+        }
+    }
+
+    // -----------------------------------------------------------------
+    // Product detail page
+    // -----------------------------------------------------------------
+    #product_detail,
+    .o_wsale_product_page {
+
+        h1 { font-size: 2rem; }
+
+        .product_price .oe_price,
+        .product_price .oe_currency_value {
+            color: var(--signova-navy);
+            font-weight: 800;
+            font-size: 1.85rem;
+        }
+
+        #product_detail_main .o_wsale_product_images,
+        .o_wsale_product_images {
+            img { border-radius: var(--signova-radius-lg); }
+        }
+
+        .js_add_cart_variants label,
+        .css_attribute_color + label { font-weight: 600; }
+
+        #add_to_cart,
+        .js_check_product {
+            padding: .82rem 1.9rem;
+            font-size: 1.02rem;
+        }
+
+        .nav-tabs {
+            border-bottom: 2px solid var(--signova-grey-200);
+
+            .nav-link {
+                color: var(--signova-body);
+                font-weight: 600;
+                border: none;
+
+                &.active {
+                    color: var(--signova-navy);
+                    border-bottom: 3px solid var(--signova-gold);
+                    background: transparent;
+                }
+            }
+        }
+    }
+
+    // Sticky add-to-cart bar (toggled by theme.js)
+    &.o_signova_sticky_cta,
+    .o_signova_sticky_cta {
+        .o_signova_sticky_bar { transform: translateY(0); }
+    }
+
+    .o_signova_sticky_bar {
+        position: fixed;
+        left: 0; right: 0; bottom: 0;
+        z-index: 1035;
+        background: var(--signova-navy);
+        color: #fff;
+        padding: .7rem 1rem;
+        box-shadow: 0 -6px 22px rgba(11, 31, 58, .25);
+        transform: translateY(110%);
+        transition: transform .28s ease;
+    }
+
+    // -----------------------------------------------------------------
+    // Cart / checkout
+    // -----------------------------------------------------------------
+    #wrap {
+        .o_wizard,
+        .o_wsale_checkout_step {
+            .o_wizard_step_active {
+                color: var(--signova-navy) !important;
+                font-weight: 700;
+            }
+        }
+    }
+
+    #cart_products,
+    .o_cart_product {
+        .td-price, .oe_currency_value { color: var(--signova-navy); font-weight: 600; }
+    }
+
+    #o_cart_summary,
+    .o_total_card,
+    #cart_total {
+        background: var(--signova-grey);
+        border: 1px solid var(--signova-grey-200);
+        border-radius: var(--signova-radius-lg);
+
+        #order_total .oe_currency_value,
+        .oe_currency_value { color: var(--signova-navy); font-weight: 800; }
+    }
+
+    .oe_website_sale .card { border-radius: var(--signova-radius-lg); }
+
+    // Forms
+    .form-control, .form-select {
+        border-radius: var(--signova-radius);
+        border-color: var(--signova-grey-200);
+        padding: .6rem .85rem;
+
+        &:focus {
+            border-color: var(--signova-gold);
+            box-shadow: 0 0 0 .18rem rgba(201, 162, 39, .18);
+        }
+    }
+
+    // -----------------------------------------------------------------
+    // Footer
+    // -----------------------------------------------------------------
+    #footer, footer {
+        background: var(--signova-navy) !important;
+        color: #b9c3d3;
+        border-top: 3px solid var(--signova-gold);
+
+        h1, h2, h3, h4, h5, h6, strong {
+            color: #fff !important;
+            font-size: 1rem;
+            letter-spacing: .02em;
+        }
+
+        a {
+            color: #b9c3d3 !important;
+            text-decoration: none;
+
+            &:hover { color: var(--signova-gold) !important; }
+        }
+
+        .o_footer_copyright,
+        .o_colored_level {
+            background: rgba(0, 0, 0, .22) !important;
+            color: #8e9bb0;
+        }
+    }
+
+    // -----------------------------------------------------------------
+    // Misc
+    // -----------------------------------------------------------------
+    ::selection {
+        background: rgba(201, 162, 39, .28);
+        color: var(--signova-ink);
+    }
+
+    .breadcrumb {
+        background: transparent;
+        padding-left: 0;
+
+        a { color: var(--signova-body); }
+        .active { color: var(--signova-navy); font-weight: 600; }
+    }
+
+    .page-item.active .page-link {
+        background-color: var(--signova-navy);
+        border-color: var(--signova-navy);
+    }
+
+    .page-link { color: var(--signova-navy); }
+
+    .alert-info {
+        background: rgba(201, 162, 39, .10);
+        border-color: rgba(201, 162, 39, .35);
+        color: var(--signova-ink);
+    }
+}
+
+// =====================================================================
+// Marketplace landing-page sections (v18.0.3.0.0)
+// Ansar-Gallery style: banner, circular category rail, product rails
+// with discount badges, deal countdown, brand strip.
+// STILL nested inside .o_signova_theme — see rule at top of file.
+// =====================================================================
+.o_signova_theme {
+
+    // ---------- Utility bar above the navbar ----------
+    .o_signova_topbar {
+        background: #071426;
+        color: #9fb0c9;
+        font-size: .82rem;
+        padding: .45rem 0;
+
+        a { color: #9fb0c9; &:hover { color: var(--signova-gold); } }
+        .o_signova_topbar_sep { opacity: .3; margin: 0 .65rem; }
+    }
+
+    // ---------- Hero banner (image-free, gradient + pattern) ----------
+    .s_signova_hero {
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+            background-size: 46px 46px;
+            pointer-events: none;
+        }
+        .container { position: relative; z-index: 2; }
+    }
+
+    // ---------- Circular category rail ----------
+    .s_signova_cat_rail {
+        background: #fff;
+        padding: 2.2rem 0 1.6rem;
+        border-bottom: 1px solid var(--signova-grey-200);
+
+        .o_signova_rail {
+            display: flex;
+            gap: 1.4rem;
+            overflow-x: auto;
+            padding-bottom: .6rem;
+            scrollbar-width: thin;
+
+            &::-webkit-scrollbar { height: 6px; }
+            &::-webkit-scrollbar-thumb {
+                background: var(--signova-grey-200);
+                border-radius: 99px;
+            }
+        }
+
+        .o_signova_cat_circle {
+            flex: 0 0 auto;
+            width: 104px;
+            text-align: center;
+            text-decoration: none;
+
+            .o_signova_circle {
+                width: 84px;
+                height: 84px;
+                margin: 0 auto .55rem;
+                border-radius: 50%;
+                background: var(--signova-grey);
+                border: 2px solid transparent;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+                transition: var(--signova-transition);
+
+                img { width: 100%; height: 100%; object-fit: cover; }
+            }
+
+            span {
+                display: block;
+                font-size: .8rem;
+                font-weight: 600;
+                color: var(--signova-ink);
+                line-height: 1.3;
+            }
+
+            &:hover .o_signova_circle {
+                border-color: var(--signova-gold);
+                transform: translateY(-3px);
+                box-shadow: var(--signova-shadow-lg);
+            }
+        }
+    }
+
+    // ---------- Section header with "view all" ----------
+    .o_signova_sec_head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin-bottom: 1.5rem;
+        gap: 1rem;
+
+        h2 { margin: 0; font-size: 1.55rem; }
+        p  { margin: .25rem 0 0; font-size: .92rem; }
+
+        .o_signova_viewall {
+            flex: 0 0 auto;
+            font-weight: 700;
+            font-size: .88rem;
+            color: var(--signova-navy);
+            border-bottom: 2px solid var(--signova-gold);
+            padding-bottom: 2px;
+
+            &:hover { color: var(--signova-gold); }
+        }
+    }
+
+    // ---------- Product card (marketplace style) ----------
+    .o_signova_pcard {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        background: #fff;
+        border: 1px solid var(--signova-grey-200);
+        border-radius: var(--signova-radius-lg);
+        overflow: hidden;
+        text-decoration: none;
+        transition: var(--signova-transition);
+
+        &:hover {
+            border-color: var(--signova-gold);
+            transform: translateY(-5px);
+            box-shadow: var(--signova-shadow-lg);
+
+            .o_signova_pimg img { transform: scale(1.06); }
+            .o_signova_pcart { opacity: 1; transform: translateY(0); }
+        }
+
+        .o_signova_pimg {
+            position: relative;
+            aspect-ratio: 1 / 1;
+            background: var(--signova-grey);
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform .4s ease;
+            }
+        }
+
+        .o_signova_badge {
+            position: absolute;
+            top: .6rem;
+            left: .6rem;
+            z-index: 2;
+            background: var(--signova-gold);
+            color: var(--signova-navy);
+            font-size: .7rem;
+            font-weight: 800;
+            letter-spacing: .04em;
+            padding: .22rem .55rem;
+            border-radius: 6px;
+            text-transform: uppercase;
+        }
+
+        .o_signova_badge_new  { background: #1f9d55; color: #fff; }
+        .o_signova_badge_sale { background: #c0392b; color: #fff; }
+
+        .o_signova_pbody {
+            padding: .85rem .9rem 1rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1 1 auto;
+        }
+
+        .o_signova_pcat {
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .07em;
+            text-transform: uppercase;
+            color: var(--signova-gold);
+            margin-bottom: .3rem;
+        }
+
+        .o_signova_pname {
+            font-size: .93rem;
+            font-weight: 650;
+            color: var(--signova-ink);
+            line-height: 1.35;
+            margin-bottom: .3rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .o_signova_pspec {
+            font-size: .8rem;
+            color: var(--signova-body);
+            margin-bottom: .6rem;
+        }
+
+        .o_signova_pprice {
+            margin-top: auto;
+            display: flex;
+            align-items: baseline;
+            gap: .45rem;
+            flex-wrap: wrap;
+
+            .o_signova_now {
+                font-size: 1.08rem;
+                font-weight: 800;
+                color: var(--signova-navy);
+            }
+            .o_signova_was {
+                font-size: .85rem;
+                color: #98a2b3;
+                text-decoration: line-through;
+            }
+            .o_signova_off {
+                font-size: .74rem;
+                font-weight: 800;
+                color: #c0392b;
+            }
+        }
+
+        .o_signova_pcart {
+            margin-top: .7rem;
+            opacity: 0;
+            transform: translateY(6px);
+            transition: var(--signova-transition);
+            width: 100%;
+
+            @media (max-width: 991.98px) { opacity: 1; transform: none; }
+        }
+    }
+
+    // ---------- Horizontal scroll rail for products ----------
+    .o_signova_prail {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(210px, 1fr);
+        gap: 1.1rem;
+        overflow-x: auto;
+        padding-bottom: .8rem;
+        scroll-snap-type: x mandatory;
+
+        > * { scroll-snap-align: start; }
+
+        &::-webkit-scrollbar { height: 6px; }
+        &::-webkit-scrollbar-thumb {
+            background: var(--signova-grey-200);
+            border-radius: 99px;
+        }
+
+        @media (min-width: 1200px) {
+            grid-auto-flow: row;
+            grid-template-columns: repeat(5, 1fr);
+            overflow: visible;
+        }
+    }
+
+    // ---------- Deal-of-the-week band ----------
+    .s_signova_deal {
+        background: linear-gradient(120deg, var(--signova-navy), var(--signova-navy-700));
+        color: #fff;
+        padding: 2.4rem 0;
+
+        h3 { color: #fff; margin: 0 0 .4rem; }
+        p  { color: #cdd6e4; margin: 0; }
+
+        .o_signova_timer {
+            display: flex;
+            gap: .55rem;
+
+            .o_signova_tbox {
+                background: rgba(255,255,255,.10);
+                border: 1px solid rgba(255,255,255,.18);
+                border-radius: 10px;
+                padding: .5rem .7rem;
+                text-align: center;
+                min-width: 60px;
+
+                strong {
+                    display: block;
+                    font-size: 1.3rem;
+                    color: var(--signova-gold-light);
+                    line-height: 1;
+                }
+                span {
+                    font-size: .66rem;
+                    letter-spacing: .09em;
+                    text-transform: uppercase;
+                    color: #a9b6cb;
+                }
+            }
+        }
+    }
+
+    // ---------- Promo split tiles ----------
+    .s_signova_promos {
+        padding: 3rem 0;
+
+        .o_signova_promo {
+            position: relative;
+            border-radius: var(--signova-radius-lg);
+            padding: 2.1rem 1.9rem;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 190px;
+            text-decoration: none;
+            transition: var(--signova-transition);
+
+            &:hover { transform: translateY(-4px); box-shadow: var(--signova-shadow-lg); }
+
+            h4 { margin: 0 0 .4rem; font-size: 1.25rem; }
+            p  { margin: 0 0 1rem; font-size: .9rem; }
+            .o_signova_plink { font-weight: 700; font-size: .87rem; }
+        }
+
+        .o_signova_promo_gold {
+            background: linear-gradient(120deg, #f6ecd0, #fbf6e8);
+            border: 1px solid rgba(201,162,39,.32);
+
+            h4 { color: var(--signova-navy); }
+            p  { color: #6b6244; }
+            .o_signova_plink { color: var(--signova-navy); }
+        }
+
+        .o_signova_promo_navy {
+            background: linear-gradient(120deg, var(--signova-navy), var(--signova-navy-500));
+
+            h4 { color: #fff; }
+            p  { color: #cdd6e4; }
+            .o_signova_plink { color: var(--signova-gold-light); }
+        }
+    }
+
+    // ---------- Trust / service strip ----------
+    .s_signova_trust {
+        background: var(--signova-grey);
+        padding: 2.2rem 0;
+        border-top: 1px solid var(--signova-grey-200);
+    }
+}
+
+// =====================================================================
+// Guide refinements v18.0.4.0.0 — image-only hero, square categories,
+// horizontal flash, no promo tiles, complete rows, multi-image gallery,
+// sign-in header, category text +10%, SEO spacing.
+// ALL still nested inside .o_signova_theme — see rule at top.
+// =====================================================================
+.o_signova_theme {
+
+    // ---------- Hero — image-only slider 1900x550 (replaces gradient) ----------
+    .s_signova_hero { padding:0; background:#fff; overflow:hidden;
+        &::after{display:none}
+        .container{max-width:1900px; padding:0}
+    }
+    .s_signova_hero_slider{position:relative; overflow:hidden; max-width:1900px; margin:0 auto; background:#fff}
+    .s_signova_hero_track{display:flex; transition:transform .6s cubic-bezier(.4,0,.2,1); will-change:transform}
+    .s_signova_hero_slide{flex:0 0 100%; display:block; line-height:0}
+    .s_signova_hero_slide img{width:100%; height:550px; object-fit:cover; display:block}
+    @media(max-width:992px){ .s_signova_hero_slide img{height:380px} }
+    @media(max-width:600px){ .s_signova_hero_slide img{height:300px} }
+    .s_signova_hero_dots{position:absolute; bottom:16px; left:50%; transform:translateX(-50%); display:flex; gap:8px; z-index:3; padding:6px 10px; border-radius:99px; background:rgba(11,31,58,.22); backdrop-filter:blur(6px)}
+    .s_signova_hero_dot{width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,.7); border:1px solid rgba(255,255,255,.9); cursor:pointer; padding:0; transition:var(--signova-transition)}
+    .s_signova_hero_dot.on{background:var(--signova-gold); border-color:var(--signova-gold); width:28px; border-radius:99px}
+    .s_signova_hero_arrow{position:absolute; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,.92); border:1px solid var(--signova-grey-200); display:grid; place-items:center; cursor:pointer; z-index:3; font-size:1.2rem; color:var(--signova-navy); box-shadow:var(--signova-shadow); transition:var(--signova-transition)}
+    .s_signova_hero_arrow:hover{background:var(--signova-gold); border-color:var(--signova-gold); transform:translateY(-50%) scale(1.06)}
+    .s_signova_hero_arrow.prev{left:1rem} .s_signova_hero_arrow.next{right:1rem}
+    @media(max-width:768px){ .s_signova_hero_arrow{display:none} }
+
+    // ---------- Square category tiles, no card behind, 10% bigger text ----------
+    .s_signova_cat_rail{ background:var(--signova-grey); padding:2.6rem 0; border-bottom:1px solid var(--signova-grey-200)}
+    .s_signova_cat_rail .o_signova_rail{ display:grid; grid-template-columns:repeat(2,1fr); gap:1rem;
+        overflow:visible; padding:0 }
+    @media(min-width:600px){ .s_signova_cat_rail .o_signova_rail{grid-template-columns:repeat(4,1fr)} }
+    @media(min-width:1000px){ .s_signova_cat_rail .o_signova_rail{grid-template-columns:repeat(6,1fr)} }
+    .s_signova_cat_rail .o_signova_cat_circle{ width:auto; flex:initial; background:transparent; border:0; padding:0; display:flex; flex-direction:column; transition:var(--signova-transition)}
+    .s_signova_cat_rail .o_signova_cat_circle:hover{ transform:translateY(-4px) }
+    .s_signova_cat_rail .o_signova_circle{ width:100%; height:auto; aspect-ratio:1/1; border-radius:var(--signova-radius-lg); background:var(--signova-white); border:1px solid var(--signova-grey-200); margin:0 0 .6rem; transition:var(--signova-transition); overflow:hidden}
+    .s_signova_cat_rail .o_signova_cat_circle:hover .o_signova_circle{ border-color:var(--signova-gold); box-shadow:var(--signova-shadow-lg)}
+    .s_signova_cat_rail .o_signova_cat_circle img{transition:transform .35s ease}
+    .s_signova_cat_rail .o_signova_cat_circle:hover img{transform:scale(1.05)}
+    .s_signova_cat_rail .o_signova_cat_circle span{ font-size:.88rem; font-weight:750; color:var(--signova-ink); line-height:1.32}
+    .s_signova_cat_rail .o_signova_cat_circle i{ display:block; font-style:normal; font-size:.815rem; color:#7a8596; margin-top:.2rem; font-weight:400 }
+    // View All tile — animated play
+    .o_signova_cat_viewall .o_signova_circle{ background:linear-gradient(135deg,var(--signova-navy),var(--signova-navy-500)); border-color:var(--signova-navy); display:grid; place-items:center; position:relative}
+    .o_signova_cat_viewall .o_signova_circle::after{ content:""; position:absolute; inset:0; background:radial-gradient(420px 220px at 70% 30%, rgba(201,162,39,.28), transparent 62%)}
+    .o_signova_cat_viewall .o_signova_play{ width:64px; height:64px; border-radius:50%; background:var(--signova-gold); color:var(--signova-navy); display:grid; place-items:center; font-size:1.6rem; position:relative; z-index:1; border:2px solid rgba(255,255,255,.35); animation:signovaPlayPulse 1.9s infinite}
+    @keyframes signovaPlayPulse{ 0%{box-shadow:0 0 0 0 rgba(201,162,39,.55)} 70%{box-shadow:0 0 0 16px rgba(201,162,39,0)} 100%{box-shadow:0 0 0 0 rgba(201,162,39,0)}}
+    .o_signova_cat_viewall span{color:var(--signova-navy)!important}
+    .o_signova_cat_viewall i{color:var(--signova-gold)!important; font-weight:650!important}
+
+    // ---------- Flash — ALWAYS horizontal scroll, not grid ----------
+    .s_signova_flash .o_signova_prail,
+    .o_signova_flash_rail{ display:flex; gap:1rem; overflow-x:auto; padding-bottom:.8rem; scroll-snap-type:x mandatory; scroll-behavior:smooth; scrollbar-width:thin; -webkit-overflow-scrolling:touch}
+    .s_signova_flash .o_signova_prail::-webkit-scrollbar,
+    .o_signova_flash_rail::-webkit-scrollbar{ height:6px}
+    .s_signova_flash .o_signova_prail::-webkit-scrollbar-thumb,
+    .o_signova_flash_rail::-webkit-scrollbar-thumb{ background:var(--signova-grey-200); border-radius:99px}
+    .s_signova_flash .o_signova_prail > *,
+    .o_signova_flash_rail > *{ flex:0 0 240px; scroll-snap-align:start}
+    @media(min-width:700px){ .s_signova_flash .o_signova_prail > *, .o_signova_flash_rail > *{ flex:0 0 250px} }
+    @media(min-width:1050px){ .s_signova_flash .o_signova_prail > *, .o_signova_flash_rail > *{ flex:0 0 230px} }
+    // Remove the previous desktop-grid override for flash sections only
+    @media(min-width:1200px){
+        .s_signova_flash .o_signova_prail{ grid-auto-flow: column; grid-template-columns:none; overflow-x:auto; display:flex}
+    }
+
+    // ---------- Grid complete-row handling — max 5 desktop / 3 mobile ----------
+    // Featured / related grids keep grid but JS trims to complete rows; CSS centers singletons
+    .o_signova_prail:not(.o_signova_flash_rail){
+        @media(min-width:700px){ grid-template-columns:repeat(3,1fr)}
+        @media(min-width:1050px){ grid-template-columns:repeat(5,1fr)}
+    }
+    // Shop grid: 5 on desktop fallback to 4 but we force 5 for complete rows
+    .o_signova_grid .oe_product_cart, .o_signova_grid .oe_product{
+        @media(min-width:1050px){ width:20% !important}
+    }
+    // Ensure product name 10% bigger? Already handled but ensure
+    .o_signova_pname{ font-size:1.02rem } // was .93 -> +10%
+
+    // ---------- Remove promo tiles ----------
+    .s_signova_promos{ display:none !important}
+
+    // ---------- Sign-in in header ----------
+    .o_signova_signin{ font-size:.88rem; font-weight:700; color:var(--signova-ink); padding:.45rem .9rem; border:1px solid var(--signova-grey-200); border-radius:99px; background:#fff; white-space:nowrap; margin-left:.3rem}
+    .o_signova_signin:hover{ border-color:var(--signova-gold); background:var(--signova-gold); color:var(--signova-navy)!important; transform:translateY(-1px)}
+    .o_signova_acct{ font-size:.88rem; font-weight:700; color:var(--signova-navy); display:inline-flex; align-items:center; gap:.4rem; padding:.45rem .7rem; border-radius:99px; background:rgba(201,162,39,.12); border:1px solid rgba(201,162,39,.25)}
+
+    // ---------- Product gallery — autoplay + zoom ----------
+    #product_detail .o_wsale_product_images,
+    .o_wsale_product_images{ position:relative; border:1px solid var(--signova-grey-200); border-radius:var(--signova-radius-lg); overflow:hidden; background:#fff}
+    #product_detail .o_wsale_product_images img,
+    .o_wsale_product_images img{ cursor:zoom-in; transition:transform .35s}
+    #product_detail .o_wsale_product_images:hover img{ transform:scale(1.03)}
+    .o_signova_thumbs{ display:flex; gap:.5rem; padding:.7rem; background:#f4f5f7; border-top:1px solid var(--signova-grey-200); overflow-x:auto}
+    .o_signova_thumb{ width:64px; height:64px; flex:0 0 64px; border:2px solid transparent; border-radius:10px; overflow:hidden; cursor:pointer; opacity:.62; background:#fff; transition:var(--signova-transition)}
+    .o_signova_thumb.on{ opacity:1; border-color:var(--signova-gold); box-shadow:0 0 0 3px rgba(201,162,39,.18)}
+    .o_signova_thumb img{ width:100%; height:100%; object-fit:contain; padding:.25rem}
+    .o_signova_gallery_nav{ position:absolute; top:50%; transform:translateY(-50%); width:38px; height:38px; border-radius:50%; background:rgba(255,255,255,.96); border:1px solid var(--signova-grey-200); display:grid; place-items:center; cursor:pointer; z-index:2; font-size:1rem; color:var(--signova-navy); box-shadow:var(--signova-shadow)}
+    .o_signova_gallery_nav:hover{ background:var(--signova-gold); border-color:var(--signova-gold)}
+    .o_signova_gallery_nav.prev{ left:.6rem} .o_signova_gallery_nav.next{ right:.6rem}
+    .o_signova_lightbox{ position:fixed; inset:0; z-index:1050; background:rgba(11,31,58,.86); display:none; place-items:center; padding:1rem; backdrop-filter:blur(4px)}
+    .o_signova_lightbox.show{ display:grid}
+    .o_signova_lightbox img{ max-width:92vw; max-height:92vh; object-fit:contain; background:#fff; border-radius:12px; box-shadow:0 20px 60px rgba(0,0,0,.4)}
+    .o_signova_lightbox_x{ position:fixed; top:1rem; right:1rem; width:42px; height:42px; border-radius:50%; background:rgba(255,255,255,.9); border:0; display:grid; place-items:center; font-size:1.3rem; cursor:pointer; z-index:1051}
+
+    // ---------- Category text +10% site-wide ----------
+    .o_signova_cat_circle span,
+    .o_signova_cat_title,
+    .o_wsale_products_sidebar a,
+    #products_grid_before a{ font-size:1.05em }
+    .breadcrumb{ font-size:.92rem}
+    .o_wsale_products_sidebar .list-group-item{ font-size:.935rem}
+
+    // ---------- SEO — breadcrumb spacing + trust strip ----------
+    .breadcrumb{ background:transparent; padding:.6rem 0; margin:0; border-bottom:1px solid var(--signova-grey-200)}
+    .s_signova_trust{ border-top:1px solid var(--signova-grey-200)}
+    // === Mobile filter drawer (fix 7) — collapsible, optimized ===
+    .js-filter-toggle{ display:none; align-items:center; gap:.5rem; background:var(--signova-white); border:1px solid var(--signova-grey-200); border-radius:var(--signova-radius); padding:.6rem 1rem; font-weight:700; cursor:pointer; margin-bottom:1rem; width:100%; justify-content:center; }
+    .js-filter-toggle:hover{ border-color:var(--signova-gold); background:var(--signova-grey); }
+    .o_signova_shop_overlay{ position:fixed; inset:0; background:rgba(11,31,58,.35); backdrop-filter:blur(2px); z-index:80; display:none; }
+    .o_signova_shop_overlay.show{ display:block; }
+    .o_signova_side_head{ display:flex; justify-content:space-between; align-items:center; margin-bottom:.8rem; }
+    .o_signova_side_close{ display:none; width:32px; height:32px; border-radius:50%; border:1px solid var(--signova-grey-200); background:var(--signova-grey); cursor:pointer; }
+    .cat-accordion{ display:flex; flex-direction:column; gap:.15rem; }
+    .cat-group{ border-radius:8px; overflow:hidden; }
+    .cat-parent{ display:flex!important; justify-content:space-between; align-items:center; }
+    .cat-group.open .cat-toggle{ transform:rotate(90deg); }
+    .cat-toggle{ transition:transform .2s; opacity:.6; }
+    .cat-subs{ display:none; padding:.3rem 0 .3rem .6rem; border-left:1px dashed var(--signova-grey-200); margin:.25rem 0 .5rem .9rem; }
+    .cat-sub{ font-size:.82rem!important; color:#5a657a!important; }
+    .cat-sub.on{ background:rgba(201,162,39,.14)!important; color:var(--signova-navy)!important; font-weight:700!important; }
+    @media(max-width: 991px){
+        .js-filter-toggle{ display:flex; }
+        .o_wsale_products_grid_before_rail, .o_signova_side{ position:fixed!important; top:0; left:0; bottom:0; width:300px; max-width:88vw; z-index:90; overflow-y:auto; padding:1.2rem 1rem; background:var(--signova-white); border-right:1px solid var(--signova-grey-200); transform:translateX(-100%); transition:transform .28s cubic-bezier(.4,0,.2,1); box-shadow:var(--signova-shadow-lg); }
+        .o_wsale_products_grid_before_rail.open, .o_signova_side.open{ transform:translateX(0); }
+        .o_signova_side_close{ display:grid; place-items:center; }
+    }
+
+    // === WhatsApp order (fix 5) — page-specific custom messages + flow + animations ===
+    .btn-wa, .js-wa-product, .js-wa-cart{ background:#25D366!important; border-color:#25D366!important; color:#fff!important; font-weight:800; }
+    .btn-wa:hover, .js-wa-product:hover, .js-wa-cart:hover{ background:#128C7E!important; border-color:#128C7E!important; transform:translateY(-1px); box-shadow:0 7px 20px rgba(37,211,102,.35); }
+    .wa-pulse{ animation: waPulse .6s ease; }
+    @keyframes waPulse{ 0%{ transform:scale(1)} 50%{ transform:scale(1.04)} 100%{ transform:scale(1)} }
+    .wa-hint{ font-size:.78rem; color:#6b778a; margin:.4rem 0 0; text-align:center; }
+
+    // === FAQ accordion (30 FAQs, FAQPage schema) ===
+    .o_signova_faq_list{ display:flex; flex-direction:column; gap:.6rem; margin:1.2rem 0 2rem; }
+    .o_signova_faq_item{ background:var(--signova-white); border:1px solid var(--signova-grey-200); border-radius:var(--signova-radius-lg); overflow:hidden; transition:var(--signova-transition); }
+    .o_signova_faq_item[open], .o_signova_faq_item.open{ border-color:var(--signova-gold); box-shadow:var(--signova-shadow); }
+    .o_signova_faq_item summary{ list-style:none; padding:.9rem 1rem; font-weight:700; color:var(--signova-ink); cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:.8rem; }
+    .o_signova_faq_item summary::-webkit-details-marker{ display:none; }
+    .faq-arrow{ transition:transform .2s; color:var(--signova-gold); }
+    .o_signova_faq_item[open] .faq-arrow{ transform:rotate(90deg); }
+    .faq-a{ padding:0 1.1rem 1rem; color:var(--signova-body); font-size:.92rem; border-top:1px solid var(--signova-grey-200); margin-top:.2rem; padding-top:.8rem; }
+    .faq-a a{ color:var(--signova-navy); border-bottom:1px solid var(--signova-gold); }
+
+    // === Animations & well-arranged flow (fix 5) ===
+    @keyframes oSignovaFadeInUp{ from{ opacity:0; transform:translateY(14px)} to{ opacity:1; transform:translateY(0)} }
+    .s_signova_cat_rail, .s_signova_flash, .o_signova_prail, .s_signova_deal{ animation: oSignovaFadeInUp .5s ease both; }
+    .o_signova_pcard, .o_signova_cat_circle{ animation: oSignovaFadeInUp .5s ease both; }
+    .o_signova_pcard:nth-child(2){ animation-delay:.04s } .o_signova_pcard:nth-child(3){ animation-delay:.08s }
+
+    // === Optimized images (webp/srcset/lazy, fix 6) ===
+    img[loading="lazy"]{ content-visibility:auto; }
+    .o_signova_pimg img{ transition:transform .4s; }
+    .o_signova_pcard:hover .o_signova_pimg img{ transform:scale(1.05); }
+
+
+
+}
+
+
+    // ---------- FIXES - PRESERVE COLOURS, MIRROR NEW ARRIVALS, GOLD ICONS ----------
+    // These work even if body doesn't have o_signova_theme (direct targeting)
+    
+    // Force horizontal text - fixes vertical C u s t o m
+    .o_wsale_products_item_title, .product_name, .oe_product, .oe_product * {
+        writing-mode: horizontal-tb !important;
+        white-space: normal !important;
+        word-break: break-word !important;
+    }
+    
+    // Gold icons strong yellow - direct, not nested under o_signova_theme
+    .o_wsale_my_cart .fa-shopping-cart, .o_search .fa-search, .fa-shopping-cart, .fa-search {
+        color: #ffcc00 !important;
+        font-weight: 900 !important;
+    }
+    header .fa-shopping-cart, header .fa-search {
+        color: #ffcc00 !important;
+    
+    // Shop grid mirrors New Arrivals - 5 desktop / 3 tablet
+    .o_signova_grid {
+        #products_grid .row {
+            display: flex !important;
+            flex-wrap: wrap !important;
+        }
+        .oe_product {
+            flex: 0 0 20% !important;
+            max-width: 20% !important;
+            @media (max-width: 1049px) and (min-width: 700px) {
+                flex: 0 0 33.333% !important;
+                max-width: 33.333% !important;
+            }
+            @media (max-width: 699px) {
+                flex: 0 0 50% !important;
+                max-width: 50% !important;
+            }
+            .oe_product_image {
+                height: 220px !important;
+                img {
+                    width: 100% !important;
+                    height: 100% !important;
+                    object-fit: contain !important;
+                }
+            }
+            .o_wsale_product_information * {
+                writing-mode: horizontal-tb !important;
+                white-space: normal !important;
+            }
+        }
+    }
+    
+    .o_signova_prail {
+        display: grid !important;
+        grid-template-columns: repeat(5, 1fr) !important;
+        gap: 1rem !important;
+        @media (max-width: 1049px) {
+            grid-template-columns: repeat(3, 1fr) !important;
+        }
+        @media (max-width: 699px) {
+            grid-template-columns: repeat(2, 1fr) !important;
+        }
+    }
+    
+    // Gold icons inside theme
+    .o_wsale_my_cart .fa-shopping-cart, .o_search .fa-search {
+        color: #ffcc00 !important;
+    }
+
+
+}
+
+    // ---------- FIXES - PRESERVE COLOURS, MIRROR NEW ARRIVALS, GOLD ICONS ----------
+    // These work even if body doesn't have o_signova_theme (direct targeting)
+    
+    // Force horizontal text - fixes vertical C u s t o m
+    .o_wsale_products_item_title, .product_name, .oe_product, .oe_product * {
+        writing-mode: horizontal-tb !important;
+        white-space: normal !important;
+        word-break: break-word !important;
+    }
+    
+    // Gold icons strong yellow - direct, not nested under o_signova_theme
+    .o_wsale_my_cart .fa-shopping-cart, .o_search .fa-search, .fa-shopping-cart, .fa-search {
+        color: #ffcc00 !important;
+        font-weight: 900 !important;
+    }
+    header .fa-shopping-cart, header .fa-search {
+        color: #ffcc00 !important;
+    }
+

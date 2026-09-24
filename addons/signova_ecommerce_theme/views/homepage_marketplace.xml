@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="signova_product_card" name="Signova Product Card" priority="999">
+            <t t-set="combination_info" t-value="p._get_combination_info(only_template=True)"/>
+            <t t-set="list_price" t-value="combination_info.get('list_price') or 0"/>
+            <t t-set="sale_price" t-value="combination_info.get('price') or 0"/>
+            <t t-set="has_discount" t-value="list_price &gt; sale_price and list_price &gt; 0"/>
+            <a t-attf-href="/shop/#{slug(p)}" class="o_signova_pcard">
+                <div class="o_signova_pimg">
+                    <img t-attf-src="/web/image/product.template/#{p.id}/image_256" t-att-alt="p.name" width="256" height="256"/>
+                    <t t-if="has_discount">
+                        <span class="o_signova_badge o_signova_badge_sale">-<t t-esc="int(round((list_price - sale_price) * 100.0 / list_price))"/>%</span>
+                    </t>
+                </div>
+                <div class="o_signova_pbody">
+                    <div class="o_signova_pcat" t-if="p.public_categ_ids"><t t-esc="p.public_categ_ids[0].name"/></div>
+                    <div class="o_signova_pname" t-esc="p.name"/>
+                    <div class="o_signova_pprice">
+                        <span class="o_signova_now" t-esc="sale_price" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                        <t t-if="has_discount">
+                            <span class="o_signova_was" t-esc="list_price" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                        </t>
+                    </div>
+                </div>
+            </a>
+        </template>
+
+        <template id="homepage_signova_marketplace" inherit_id="website.homepage" name="Signova Marketplace Landing" priority="999">
+            <xpath expr="//div[hasclass('oe_structure')][1]" position="after">
+                <t t-if="request and request.httprequest and request.httprequest.path == '/'">
+                    <t t-set="Product" t-value="request.env['product.template'].sudo()"/>
+                    <t t-set="PubCateg" t-value="request.env['product.public.category'].sudo()"/>
+                    <t t-set="base_dom" t-value="[('is_published','=',True),('sale_ok','=',True),'|', ('website_id','=',False), ('website_id','=',website.id)]"/>
+                    <t t-set="top_categs" t-value="PubCateg.search([('parent_id','=',False)], limit=11)"/>
+                    <t t-set="featured" t-value="Product.search(base_dom, limit=10, order='website_sequence asc, id desc')"/>
+                    <t t-set="newest" t-value="Product.search(base_dom, limit=10, order='create_date desc')"/>
+                    <t t-set="flash_products" t-value="Product.search(base_dom + [('list_price','&gt;',0)], limit=10, order='create_date desc')"/>
+
+                    <section class="s_signova_cat_rail" t-if="top_categs">
+                        <div class="container">
+                            <div class="o_signova_sec_head">
+                                <div><span class="o_signova_eyebrow">Browse</span><h2 class="fw-bold">Shop by Category</h2></div>
+                                <a href="/shop" class="o_signova_viewall">All products →</a>
+                            </div>
+                            <div class="o_signova_rail">
+                                <t t-foreach="top_categs" t-as="c">
+                                    <a t-attf-href="/shop/category/#{slug(c)}" class="o_signova_cat_circle">
+                                        <div class="o_signova_circle"><img t-attf-src="/web/image/product.public.category/#{c.id}/image_128" t-att-alt="c.name" width="128" height="128"/></div>
+                                        <span t-esc="c.name"/>
+                                    </a>
+                                </t>
+                                <a href="/shop" class="o_signova_cat_circle o_signova_cat_viewall"><div class="o_signova_circle"><span class="o_signova_play">▶</span></div><span>View All</span></a>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="s_signova_flash" style="background:linear-gradient(120deg,var(--signova-navy),var(--signova-navy-700)); padding:3rem 0" t-if="flash_products">
+                        <div class="container">
+                            <div class="o_signova_sec_head">
+                                <div><span class="o_signova_eyebrow" style="color:var(--signova-gold-light)">⚡ Flash Sale</span><h2 class="fw-bold" style="color:#fff">This week's deals</h2></div>
+                            </div>
+                            <div class="o_signova_flash_rail">
+                                <t t-foreach="flash_products[:10]" t-as="p"><t t-call="signova_ecommerce_theme.signova_product_card"/></t>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section style="padding:3rem 0" t-if="featured">
+                        <div class="container">
+                            <div class="o_signova_sec_head">
+                                <div><span class="o_signova_eyebrow">Best sellers</span><h2 class="fw-bold">Featured Products</h2></div>
+                                <a href="/shop" class="o_signova_viewall">View all →</a>
+                            </div>
+                            <div class="o_signova_prail">
+                                <t t-foreach="featured" t-as="p"><t t-call="signova_ecommerce_theme.signova_product_card"/></t>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section style="padding:3rem 0;background:var(--signova-grey)" t-if="newest" id="s_signova_new_arrivals">
+                        <div class="container">
+                            <div class="o_signova_sec_head">
+                                <div><span class="o_signova_eyebrow">Just landed</span><h2 class="fw-bold">New Arrivals</h2></div>
+                                <a href="/shop" class="o_signova_viewall">View all →</a>
+                            </div>
+                            <div class="o_signova_prail" id="o_signova_new_arrivals_grid">
+                                <t t-foreach="newest" t-as="p"><t t-call="signova_ecommerce_theme.signova_product_card"/></t>
+                            </div>
+                        </div>
+                    </section>
+                </t>
+            </xpath>
+        </template>
+    </data>
+</odoo>
